@@ -44,7 +44,7 @@ legend { padding: 0; }
 .header { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding-top: 20px; padding-bottom: 20px; }
 .logo { height: 36px; width: auto; display: block; }
 .nav { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 15px; font-weight: 500; }
-.nav a { text-decoration: none; padding: 6px 0; }
+.nav a { text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
 
 .eyebrow { font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--clay-ink); font-weight: 600; }
 .eyebrow--light { color: var(--sand-300); }
@@ -68,7 +68,7 @@ legend { padding: 0; }
 
 .band--dark { background: var(--green-800); color: var(--sand); }
 .band--sand { background: var(--sand); }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px; padding-top: 48px; padding-bottom: 48px; }
+.stats { display: grid; grid-template-columns: 1fr; gap: 32px; padding-top: 48px; padding-bottom: 48px; }
 .stats > div { display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5; }
 .stat { font-family: var(--serif); font-size: 44px; color: #fff; line-height: 1.1; }
 .stat--sand { color: var(--sand-300); }
@@ -90,7 +90,7 @@ legend { padding: 0; }
 .eta { background: var(--sage-100); border-radius: 12px; padding: 14px 16px; font-size: 15px; }
 .notice { font-size: 14px; line-height: 1.5; background: var(--sand); border-radius: 12px; padding: 12px 14px; }
 
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 20px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 20px; }
 .card { background: #fff; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 8px; }
 .step-k { color: var(--clay-ink); font-weight: 600; font-size: 13px; letter-spacing: .12em; }
 .card-title { font-family: var(--serif); font-size: 21px; font-weight: 600; }
@@ -107,15 +107,15 @@ legend { padding: 0; }
 .pill { font: inherit; font-size: 15px; cursor: pointer; min-height: 44px; padding: 10px 18px; border-radius: 999px; background: transparent; color: var(--sand); border: 1.5px solid var(--green-500); }
 .pill:hover { border-color: var(--sand); }
 .pill.is-on { background: var(--sand); color: var(--green-800); border-color: var(--sand); font-weight: 600; }
-.range { width: 100%; accent-color: var(--clay); min-height: 32px; }
+.range { width: 100%; accent-color: var(--clay); min-height: 44px; margin: 0; cursor: pointer; }
 .econ { background: var(--green-700); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px; }
 .econ .line--total { border-top-color: var(--green-500); color: #fff; font-size: 18px; }
 .econ .pos { color: #BFE3CC; }
 .econ .neg { color: #F2B8A0; }
 .fine { font-size: 13px; line-height: 1.5; }
 
-.coming { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 16px; }
-.coming li { border: 1px dashed var(--sage); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+.coming { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 16px; }
+.coming li { flex: 1 1 180px; border: 1px dashed var(--sage); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
 
 .footer { background: var(--green-900); color: var(--sage-100); }
 .footer-inner { padding-top: 48px; padding-bottom: 48px; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-start; }
@@ -124,6 +124,22 @@ legend { padding: 0; }
 .footer-text strong { color: #fff; }
 .footer-muted { color: #B9C7BF; }
 
+/* Tablet: 2-up steps, 3-up stats */
+@media (min-width: 600px) {
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Laptop / tablet landscape and up: 4-up steps */
+@media (min-width: 1000px) {
+  .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+/* Small phones (iPhone SE, 320-380px): size options become full-width rows */
+@media (max-width: 400px) {
+  .sizes { grid-template-columns: 1fr; }
+  .size { flex-direction: row; justify-content: space-between; align-items: center; min-height: 52px; }
+  .size span { font-size: 14px; }
+  .nav { gap: 0 18px; font-size: 14px; }
+}
 @media (max-width: 560px) {
   .section { padding-top: 56px; padding-bottom: 56px; }
   .hero { padding-top: 24px; gap: 32px; }
